@@ -47,8 +47,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <LibraryPath>F:\Projects;$(LibraryPath)</LibraryPath>
-    <IncludePath>$(MSBuildStartupDirectory)\..\Permissions\Permissions\Public;$(MSBuildStartupDirectory)\..\..\ARK-Server-API\version\Core\Public;$(IncludePath)</IncludePath>
+    <LibraryPath>D:\GitHub\Ark-Server-Plugins\ARK-Server-API\x64\Release;D:\GitHub\Ark-Server-Plugins\Permissions\x64\Release;$(LibraryPath)</LibraryPath>
+    <IncludePath>D:\GitHub\Ark-Server-Plugins\Permissions\Permissions\Public;D:\GitHub\Ark-Server-Plugins\ARK-Server-API\version\Core\Public;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>

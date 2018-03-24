@@ -57,11 +57,14 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
+    <IncludePath>D:\GitHub\Ark-Server-Plugins\ARK-Server-API\version\Core\Public;$(IncludePath)</IncludePath>
+    <LibraryPath>D:\GitHub\Ark-Server-Plugins\ARK-Server-API\x64\Release;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(MSBuildStartupDirectory)\..\..\ARK-Server-API\version\Core\Public;$(IncludePath)</IncludePath>
-    <LibraryPath>F:\Projects;$(LibraryPath)</LibraryPath>
+    <IncludePath>D:\GitHub\Ark-Server-Plugins\ARK-Server-API\version\Core\Public;$(IncludePath)</IncludePath>
+    <LibraryPath>D:\GitHub\Ark-Server-Plugins\ARK-Server-API\x64\Release;$(LibraryPath)</LibraryPath>
+    <SourcePath>D:\GitHub\Ark-Server-Plugins\ARK-Server-API\version\Core\Public;$(SourcePath)</SourcePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -88,6 +91,7 @@
       <PreprocessorDefinitions>NDEBUG;PERMISSIONS_EXPORTS;_WINDOWS;_USRDLL;ARK_EXPORTS;_SILENCE_ALL_CXX17_DEPRECATION_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <PrecompiledHeaderFile />
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
