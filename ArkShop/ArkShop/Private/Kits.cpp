@@ -225,18 +225,20 @@ namespace ArkShop::Kits
 			auto kit_entry_iter = kits_list.find(kit_name_str);
 			if (kit_entry_iter == kits_list.end())
 			{
-				ArkApi::GetApiUtils().SendChatMessage(player_controller, GetText("Sender"),
-				                                      *GetText("WrongId"));
+				ArkApi::GetApiUtils().SendChatMessage(player_controller, GetText("Sender"), *GetText("WrongId"));
 				return;
 			}
 
 			if (const int kit_amount = GetKitAmount(steam_id, kit_name);
 				kit_amount > 0 && ChangeKitAmount(kit_name, -1, steam_id))
 			{
-				GiveKitFromJson(player_controller, kit_entry_iter.value());
+				auto kit_entry = kit_entry_iter.value();
 
-				ArkApi::GetApiUtils().SendChatMessage(player_controller, GetText("Sender"),
-				                                      *GetText("KitsLeft"), kit_amount - 1, *kit_name);
+				GiveKitFromJson(player_controller, kit_entry);
+
+				const std::wstring description = ArkApi::Tools::Utf8Decode(kit_entry.value("Description", "No description"));
+
+				ArkApi::GetApiUtils().SendChatMessage(player_controller, GetText("Sender"), *GetText("KitsLeft"), kit_amount - 1, *kit_name, description);
 
 				// Log
 				const std::wstring log = fmt::format(TEXT("{}({}) used kit \"{}\""),
@@ -279,9 +281,19 @@ namespace ArkShop::Kits
 			{
 				const std::wstring description = ArkApi::Tools::Utf8Decode(iter_value.value("Description", "No description"));
 
-				std::wstring price_str = price != -1 ? fmt::format(L"Price: {}", price) : L"";
+				const FString price_str = GetText("KitsListPrice");
 
-				kits_str += FString::Format(L"\"{}\" - {}. {} left. {}\n", *kit_name, description, amount, price_str);
+				const FString price_line = GetText("KitsListLine");
+
+				kits_str += FString::Format(*price_line, *kit_name, description, amount);
+
+				if (price != -1)
+				{
+					kits_str += " ";
+					kits_str += FString::Format(*price_str, price);
+				}
+
+				kits_str += "\n";
 			}
 		}
 
